@@ -1,0 +1,33 @@
+from PIL import Image, ImageDraw, ImageFont
+
+def create_digital_poster(message, output_path):
+    # Set up canvas
+    width, height = 800, 600
+    background_color = "white"
+    image = Image.new("RGB", (width, height), background_color)
+    draw = ImageDraw.Draw(image)
+
+    # Choose a font and size
+    font_path = "path/to/your/font.ttf"
+    font_size = 40
+    font = ImageFont.truetype(font_path, font_size)
+
+    # Choose colors
+    text_color = "black"
+
+    # Calculate text position
+    text_width, text_height = draw.textsize(message, font)
+    x = (width - text_width) // 2
+    y = (height - text_height) // 2
+
+    # Add text to the image
+    draw.text((x, y), message, font=font, fill=text_color)
+
+    # Save the image
+    image.save(output_path)
+
+if __name__ == "__main__":
+    message = "Your Message Here"
+    output_path = "path/to/save/your/image.png"
+    
+    create_digital_poster(message, output_path)
