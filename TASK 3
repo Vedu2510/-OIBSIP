@@ -1,0 +1,47 @@
+from PIL import Image, ImageDraw, ImageFont
+
+def create_business_card(output_path):
+    # Set up canvas
+    width, height = 600, 400
+    background_color = "white"
+    image = Image.new("RGB", (width, height), background_color)
+    draw = ImageDraw.Draw(image)
+
+    # Draw laptop shape
+    laptop_color = "gray"
+    laptop_width, laptop_height = 300, 180
+    laptop_x, laptop_y = (width - laptop_width) // 2, 100
+    draw.rectangle([laptop_x, laptop_y, laptop_x + laptop_width, laptop_y + laptop_height], fill=laptop_color)
+
+    # Draw screen/browser icon
+    browser_color = "blue"
+    browser_radius = 30
+    browser_x, browser_y = (width - browser_radius) // 2, laptop_y + 20
+    draw.ellipse([browser_x, browser_y, browser_x + browser_radius, browser_y + browser_radius], fill=browser_color)
+
+    # Set up font
+    font_path = "path/to/your/font.ttf"
+    font_size = 24
+    font = ImageFont.truetype(font_path, font_size)
+
+    # Add company name
+    company_name = "Your Company Name"
+    name_width, name_height = draw.textsize(company_name, font)
+    name_x = (width - name_width) // 2
+    name_y = laptop_y + laptop_height + 20
+    draw.text((name_x, name_y), company_name, font=font, fill="black")
+
+    # Add job title
+    job_title = "Your Job Title"
+    title_width, title_height = draw.textsize(job_title, font)
+    title_x = (width - title_width) // 2
+    title_y = name_y + name_height + 10
+    draw.text((title_x, title_y), job_title, font=font, fill="black")
+
+    # Save the image
+    image.save(output_path)
+
+if __name__ == "__main__":
+    output_path = "path/to/save/your/business_card.png"
+    
+    create_business_card(output_path)
