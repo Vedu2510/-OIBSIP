@@ -1,0 +1,28 @@
+from PIL import Image, ImageDraw
+
+def create_logo(output_path):
+    # Set up canvas
+    width, height = 300, 200
+    background_color = "white"
+    image = Image.new("RGB", (width, height), background_color)
+    draw = ImageDraw.Draw(image)
+
+    # Draw laptop shape
+    laptop_color = "gray"
+    laptop_width, laptop_height = 200, 120
+    laptop_x, laptop_y = (width - laptop_width) // 2, 40
+    draw.rectangle([laptop_x, laptop_y, laptop_x + laptop_width, laptop_y + laptop_height], fill=laptop_color)
+
+    # Draw screen/browser icon
+    browser_color = "blue"
+    browser_radius = 20
+    browser_x, browser_y = (width - browser_radius) // 2, laptop_y + 10
+    draw.ellipse([browser_x, browser_y, browser_x + browser_radius, browser_y + browser_radius], fill=browser_color)
+
+    # Save the image
+    image.save(output_path)
+
+if __name__ == "__main__":
+    output_path = "path/to/save/your/logo.png"
+    
+    create_logo(output_path)
