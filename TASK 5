@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+
+def create_infographic():
+    # Data for the infographic
+    labels = ['Laptop', 'Browser']
+    sizes = [70, 30]
+    colors = ['gray', 'lightblue']
+
+    # Create a pie chart
+    plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90, wedgeprops=dict(width=0.4))
+
+    # Draw a circle in the center to make it look like a donut chart
+    center_circle = plt.Circle((0, 0), 0.70, fc='white')
+    fig = plt.gcf()
+    fig.gca().add_artist(center_circle)
+
+    # Equal aspect ratio ensures that pie is drawn as a circle.
+    plt.axis('equal')
+    plt.title('Laptop with Browser Icon')
+
+    # Show the infographic
+    plt.show()
+
+if __name__ == "__main__":
+    create_infographic()
